@@ -1,4 +1,6 @@
-Advertising and Printing Business App 
+[ Advertising and Printing Business App ]
+
+~ As part of my Milestone-1, i completed the following tasks with mentioned ways:
 
 - I created the navigation flow using Mermaid Live as the primary diagramming tool.
 
