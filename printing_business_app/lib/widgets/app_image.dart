@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Shows an image from the assets folder.
-///
-/// If the file is missing (for example while the placeholder pictures are being
-/// replaced with real photos) a grey box with an icon is shown instead of
-/// crashing the screen.
+
 class AppImage extends StatelessWidget {
   final String path;
   final double? width;
