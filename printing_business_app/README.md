@@ -229,16 +229,3 @@ lib/
 ```
 
 ---
-
-## 10. Notes and limitations
-
-- Quote requests are stored **in memory only**. Nothing is sent to a server and
-  the list is cleared when the app closes. The success dialog says this clearly.
-- The Contact screen shows the address and an "Open in Google Maps" button
-  rather than an embedded map, because an embedded Google map would require an
-  API key. No keys are included in this repository.
-- Only the Android platform folder is included, which is what the course
-  requires. Run `flutter create --platforms=ios .` if an iOS build is ever needed.
-- If you upgrade to `share_plus` 11 or newer, the share call in
-  `lib/utils/launcher_helper.dart` changes to
-  `SharePlus.instance.share(ShareParams(text: ..., subject: ...))`.
