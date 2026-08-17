@@ -4,8 +4,6 @@ import '../app_theme.dart';
 import '../models/service.dart';
 import 'app_image.dart';
 
-/// A service row on the Services screen: picture, name, short description and
-/// an "Ask Quote" button, exactly as drawn in the wireframe.
 class ServiceCard extends StatelessWidget {
   final Service service;
   final VoidCallback onAskQuote;
