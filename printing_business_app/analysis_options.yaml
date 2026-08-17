@@ -1,0 +1,3 @@
+# Standard Flutter lint rules.
+# Run `flutter analyze` to check the project.
+include: package:flutter_lints/flutter.yaml

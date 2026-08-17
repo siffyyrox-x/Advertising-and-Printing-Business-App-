@@ -1,0 +1,31 @@
+name: printing_business_app
+description: A Flutter Android app for an advertising and printing business.
+publish_to: 'none'
+version: 0.5.0+2
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+  flutter: '>=3.22.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Opens the phone dialer, WhatsApp, the email app, Google Maps and social links.
+  url_launcher: ^6.3.1
+
+  # Opens the Android share sheet for the "Share App" feature.
+  share_plus: ^10.1.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/images/services/
+    - assets/images/gallery/
