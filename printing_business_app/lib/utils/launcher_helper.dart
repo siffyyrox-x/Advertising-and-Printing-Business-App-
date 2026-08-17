@@ -4,11 +4,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../data/company_info.dart';
 
-/// Opens external applications (dialer, WhatsApp, email, maps, browser) and
-/// the Android share sheet.
-///
-/// Every method reports honestly: if an app could not be opened, a message is
-/// shown. Nothing here ever claims that a message was sent.
 class LauncherHelper {
   LauncherHelper._();
 
@@ -20,13 +15,12 @@ class LauncherHelper {
     );
   }
 
-  /// Tries to open [uri]. Shows [errorMessage] when it fails.
   static Future<void> _open(
     BuildContext context,
     Uri uri,
     String errorMessage,
   ) async {
-    // Captured before the await so BuildContext is not used across an async gap.
+
     final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
     try {
       final bool opened =
