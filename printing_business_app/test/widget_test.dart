@@ -85,10 +85,10 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(const PrintingBusinessApp());
 
-    // The splash screen shows the company name.
+   
     expect(find.text(CompanyInfo.name), findsOneWidget);
 
-    // After the two second delay the app moves on to the main screen.
+   
     await tester.pump(const Duration(seconds: 3));
     await tester.pumpAndSettle();
 
