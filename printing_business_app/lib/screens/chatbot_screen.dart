@@ -4,7 +4,6 @@ import '../app_theme.dart';
 import '../data/chatbot_data.dart';
 import 'quote_screen.dart';
 
-/// Opens the chatbot ("AI Service Helper" in the navigation flow diagram).
 Future<void> openChatbotScreen(BuildContext context) {
   return Navigator.of(context).push(
     MaterialPageRoute<void>(
