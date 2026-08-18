@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// The colours and text styles used across the app.
+/// Kept deliberately small so it is easy to read and explain.
 class AppTheme {
   AppTheme._();
 
@@ -46,7 +48,7 @@ class AppTheme {
     );
   }
 
-
+  /// Rounded corners used by cards and images throughout the app.
   static final BorderRadius radius = BorderRadius.circular(10);
 
   static const TextStyle sectionTitle = TextStyle(

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/// One of the small "Call Now / WhatsApp / Email" buttons.
+///
+/// The icon sits above the label so three buttons always fit on one row, even
+/// on a narrow phone. This avoids the usual RenderFlex overflow warning.
 class QuickActionButton extends StatelessWidget {
   final IconData icon;
   final String label;

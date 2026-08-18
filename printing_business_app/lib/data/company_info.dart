@@ -2,7 +2,20 @@ import 'package:flutter/material.dart';
 
 import '../models/social_link.dart';
 
-
+/// =============================================================================
+/// EDIT THIS FILE TO CONFIGURE THE APP
+/// =============================================================================
+/// Every piece of business information used by the app lives here.
+/// Nothing else in the project needs to be changed.
+///
+/// The values below that start with `YOUR_` are placeholders. The uploaded
+/// project documents did not contain the real business details, so no real
+/// phone number, address or social account has been invented. Replace each
+/// placeholder with the real value before the demo.
+///
+/// While a placeholder is still in place, the matching button will show a short
+/// message explaining what to configure instead of silently doing nothing.
+/// =============================================================================
 class CompanyInfo {
   CompanyInfo._();
 

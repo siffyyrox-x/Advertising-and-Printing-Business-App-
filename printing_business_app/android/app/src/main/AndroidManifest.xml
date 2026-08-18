@@ -1,5 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Needed by the online Service Helper, which calls the Gemini API.
+         The app still works without a connection: it falls back to the
+         built-in offline chatbot. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <!--
       Android 11 (API 30) and above require apps to declare which other apps
       they intend to open. Without this block, url_launcher cannot check for

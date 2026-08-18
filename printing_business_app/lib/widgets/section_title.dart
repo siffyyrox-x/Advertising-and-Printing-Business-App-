@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../app_theme.dart';
 
+/// A small heading such as "About Us" or "Popular Services".
 class SectionTitle extends StatelessWidget {
   final String text;
   final EdgeInsetsGeometry padding;

@@ -4,10 +4,12 @@ import '../app_theme.dart';
 import '../data/company_info.dart';
 import '../utils/launcher_helper.dart';
 import '../widgets/app_image.dart';
+import 'about_screen.dart';
 import 'chatbot_screen.dart';
 import 'contact_screen.dart';
 import 'gallery_screen.dart';
 import 'home_screen.dart';
+import 'my_requests_screen.dart';
 import 'quote_screen.dart';
 import 'services_screen.dart';
 
@@ -153,6 +155,14 @@ class _MainScreenState extends State<MainScreen> {
               },
             ),
             ListTile(
+              leading: const Icon(Icons.receipt_long_outlined),
+              title: const Text('My Requests'),
+              onTap: () {
+                Navigator.of(context).pop();
+                openMyRequestsScreen(context);
+              },
+            ),
+            ListTile(
               leading: const Icon(Icons.chat_bubble_outline),
               title: const Text('Service Helper'),
               onTap: () {
@@ -160,12 +170,21 @@ class _MainScreenState extends State<MainScreen> {
                 openChatbotScreen(context);
               },
             ),
+            const Divider(height: 1),
             ListTile(
               leading: const Icon(Icons.share_outlined),
               title: const Text('Share App'),
               onTap: () {
                 Navigator.of(context).pop();
                 LauncherHelper.shareApp(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.info_outline),
+              title: const Text('About'),
+              onTap: () {
+                Navigator.of(context).pop();
+                openAboutScreen(context);
               },
             ),
           ],

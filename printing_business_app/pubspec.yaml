@@ -1,7 +1,7 @@
 name: printing_business_app
 description: A Flutter Android app for an advertising and printing business.
 publish_to: 'none'
-version: 0.5.0+2
+version: 1.0.0+3
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
@@ -16,6 +16,15 @@ dependencies:
 
   # Opens the Android share sheet for the "Share App" feature.
   share_plus: ^10.1.4
+
+  # Local SQLite database for saved quote requests and chatbot history.
+  sqflite: ^2.3.0
+
+  # Builds the database file path in a safe, platform correct way.
+  path: ^1.9.0
+
+  # Calls the free Gemini API for the online chatbot answers.
+  http: ^1.2.0
 
 dev_dependencies:
   flutter_test:

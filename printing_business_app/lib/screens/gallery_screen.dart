@@ -7,6 +7,7 @@ import '../models/gallery_item.dart';
 import '../models/service.dart';
 import '../utils/launcher_helper.dart';
 import '../widgets/app_image.dart';
+import 'image_view_screen.dart';
 
 /// The Gallery tab. Shows previous work in a two column grid. Tapping a picture
 /// opens a larger preview with the project name and description.
@@ -102,6 +103,14 @@ class _GalleryTile extends StatelessWidget {
             TextButton(
               onPressed: () => Navigator.of(dialogContext).pop(),
               child: const Text('Close'),
+            ),
+            TextButton.icon(
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+                openImageViewScreen(context, item);
+              },
+              icon: const Icon(Icons.zoom_in, size: 18),
+              label: const Text('View full screen'),
             ),
           ],
         );

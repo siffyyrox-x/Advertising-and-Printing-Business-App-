@@ -3,10 +3,12 @@ import 'package:flutter/services.dart';
 
 import '../app_theme.dart';
 import '../data/chatbot_data.dart';
+import '../data/database_helper.dart';
 import '../data/services_data.dart';
 import '../models/quote_request.dart';
 import '../models/service.dart';
 import '../utils/launcher_helper.dart';
+import 'my_requests_screen.dart';
 
 /// Opens the Request Quote screen. [service] pre-selects a service when the
 /// user arrived from an "Ask Quote" button on the Services screen.
@@ -20,9 +22,10 @@ Future<void> openQuoteScreen(BuildContext context, {Service? service}) {
 
 /// The Request Quote form.
 ///
-/// Milestone 2 note: the form is fully working and validated, but the request
-/// is only kept in memory on the device. There is no server or database yet,
-/// so the app never claims that the request was sent to the company.
+/// Milestone 3: a valid submission is written to the local SQLite database, so
+/// it is still there after the app is closed and reopened. It is stored on the
+/// phone only, so the app never claims the request reached the company by
+/// itself; it offers to send it over WhatsApp instead.
 class QuoteScreen extends StatefulWidget {
   final Service? preselectedService;
 
@@ -43,6 +46,9 @@ class _QuoteScreenState extends State<QuoteScreen> {
 
   int? _selectedServiceId;
   String? _suggestionText;
+
+  /// True while the row is being written to the database.
+  bool _isSaving = false;
 
   @override
   void initState() {
@@ -152,8 +158,12 @@ class _QuoteScreenState extends State<QuoteScreen> {
     });
   }
 
-  void _submit() {
+  Future<void> _submit() async {
     FocusScope.of(context).unfocus();
+
+    if (_isSaving) {
+      return;
+    }
 
     if (!_formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -169,16 +179,43 @@ class _QuoteScreenState extends State<QuoteScreen> {
       return;
     }
 
-    final QuoteRequest quote = QuoteStore.add(
+    // Captured before the await so BuildContext is not used across an async gap.
+    final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
+
+    final QuoteRequest draft = QuoteRequest(
       serviceId: _selectedServiceId!,
       customerName: _nameController.text.trim(),
       phone: _phoneController.text.trim(),
       email: _emailController.text.trim(),
-      projectDetails: _detailsController.text.trim(),
       quantity: _quantityController.text.trim(),
+      projectDetails: _detailsController.text.trim(),
+      createdAt: DateTime.now(),
     );
 
-    _showSuccessDialog(quote);
+    setState(() => _isSaving = true);
+
+    QuoteRequest saved;
+    try {
+      final int newId = await DatabaseHelper.instance.insertQuote(draft);
+      saved = draft.copyWith(quoteId: newId);
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() => _isSaving = false);
+      messenger.showSnackBar(
+        const SnackBar(
+          content: Text('Could not save the request on this device.'),
+        ),
+      );
+      return;
+    }
+
+    if (!mounted) {
+      return;
+    }
+    setState(() => _isSaving = false);
+    _showSuccessDialog(saved);
   }
 
   void _clearForm() {
@@ -233,12 +270,13 @@ class _QuoteScreenState extends State<QuoteScreen> {
               children: <Widget>[
                 Text('Thank you, ${quote.customerName}.'),
                 const SizedBox(height: 8),
-                Text('Reference number: #${quote.quoteId}'),
+                Text('Reference number: #${quote.quoteId ?? 0}'),
                 const SizedBox(height: 12),
                 const Text(
-                  'This version of the app saves your request on this device '
-                  'only. It has not been sent to the company yet. Please send '
-                  'it over WhatsApp, or call us, so we can prepare your quote.',
+                  'Your request is saved on this device and you can find it '
+                  'again under "My Requests". It has not reached the shop by '
+                  'itself, so please send it over WhatsApp, or call us, and we '
+                  'will prepare your quote.',
                   style: AppTheme.muted,
                 ),
               ],
@@ -251,6 +289,14 @@ class _QuoteScreenState extends State<QuoteScreen> {
                 _clearForm();
               },
               child: const Text('Close'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+                _clearForm();
+                openMyRequestsScreen(context);
+              },
+              child: const Text('My Requests'),
             ),
             ElevatedButton.icon(
               onPressed: () {
@@ -412,21 +458,34 @@ class _QuoteScreenState extends State<QuoteScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: _submit,
-                  child: const Text(
-                    'Submit Quote Request',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+                  onPressed: _isSaving ? null : _submit,
+                  child: _isSaving
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
+                        )
+                      : const Text(
+                          'Submit Quote Request',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                 ),
               ),
               const SizedBox(height: 8),
               TextButton(
-                onPressed: _clearForm,
+                onPressed: _isSaving ? null : _clearForm,
                 child: const Text('Clear form'),
               ),
               const SizedBox(height: 8),
               const Text(
-                'No login or payment is needed in this version.',
+                'No login or payment is needed. Your request is saved on this '
+                'phone only.',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 12, color: Color(0xFF9E9E9E)),
               ),

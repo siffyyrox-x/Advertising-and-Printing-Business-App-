@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Matches the SOCIAL_LINK entity from the project schema diagram.
 class SocialLink {
   final int socialId;
   final String platform;
