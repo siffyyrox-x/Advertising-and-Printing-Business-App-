@@ -243,13 +243,4 @@ device. It is exercised manually by submitting a request and reopening the app.
 
 ---
 
-## 9. Honest notes for the evaluation
 
-- Quote requests are stored on the phone only. The app never claims otherwise;
-  the confirmation dialog explains it and offers to send the request over
-  WhatsApp.
-- The online chatbot needs a free Gemini API key at build time. Without it the
-  app runs normally in offline mode, and the banner on the chat screen says so.
-- The Contact screen shows an address panel with an "Open in Google Maps"
-  button, not an embedded map, because an embedded map requires an API key.
-- No API key, password or secret is committed anywhere in this repository.
