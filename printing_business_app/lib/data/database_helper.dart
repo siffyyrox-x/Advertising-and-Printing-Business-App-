@@ -139,7 +139,7 @@ class DatabaseHelper {
     return db.delete(tableAiRequests);
   }
 
-  /// Closes the database. Only used when the app shuts down or in tests.
+
   Future<void> close() async {
     await _database?.close();
     _database = null;
