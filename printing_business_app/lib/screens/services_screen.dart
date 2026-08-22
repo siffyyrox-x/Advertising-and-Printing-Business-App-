@@ -7,8 +7,6 @@ import '../widgets/section_title.dart';
 import '../widgets/service_card.dart';
 import 'quote_screen.dart';
 
-/// The Services tab. Services are grouped into "Printing" and "Advertising"
-/// so both parts of the business are easy to find.
 class ServicesScreen extends StatelessWidget {
   final ValueChanged<int> onOpenTab;
 
