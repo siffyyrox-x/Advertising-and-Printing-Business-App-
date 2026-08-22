@@ -2,8 +2,6 @@ import 'company_info.dart';
 import 'services_data.dart';
 import '../models/service.dart';
 
-/// One rule for the chatbot: if the user's message contains any of [keywords],
-/// the bot replies with [answer].
 class ChatRule {
   final List<String> keywords;
   final String answer;
@@ -11,11 +9,6 @@ class ChatRule {
   const ChatRule(this.keywords, this.answer);
 }
 
-/// A simple rule based chatbot (the "AI Service Helper" in the navigation flow).
-///
-/// It is not a machine learning model and it does not call any online AI
-/// service. It lowercases the user's message and looks for known keywords.
-/// The rule with the most keyword matches wins.
 class ChatBot {
   ChatBot._();
 
