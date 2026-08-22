@@ -18,7 +18,6 @@ Future<void> openAboutScreen(BuildContext context) {
   );
 }
 
-/// A short "about the company and the app" page, reachable from the side menu.
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
