@@ -8,13 +8,11 @@ import '../widgets/quick_action_button.dart';
 import '../widgets/section_title.dart';
 import 'quote_screen.dart';
 
-/// The Contact tab: company details, location, contact buttons, social media
-/// links, Share App and a shortcut to the quote form.
+
 class ContactScreen extends StatelessWidget {
   const ContactScreen({super.key});
 
-  /// Shows the configured value, or a short reminder when it is still a
-  /// placeholder, so nothing on screen pretends to be real information.
+  
   static String _display(String value) {
     return CompanyInfo.isPlaceholder(value) ? 'Not set yet' : value;
   }
