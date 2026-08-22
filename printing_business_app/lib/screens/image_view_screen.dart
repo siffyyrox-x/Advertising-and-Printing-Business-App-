@@ -12,10 +12,7 @@ Future<void> openImageViewScreen(BuildContext context, GalleryItem item) {
   );
 }
 
-/// A full screen picture the user can pinch to zoom and drag around.
-///
-/// InteractiveViewer is a normal Flutter widget, so no extra package is needed
-/// for zooming.
+
 class ImageViewScreen extends StatelessWidget {
   final GalleryItem item;
 
