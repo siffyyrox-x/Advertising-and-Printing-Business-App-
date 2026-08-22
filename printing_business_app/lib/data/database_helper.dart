@@ -4,15 +4,7 @@ import 'package:sqflite/sqflite.dart';
 import '../models/ai_request.dart';
 import '../models/quote_request.dart';
 
-/// The local SQLite database for the app.
-///
-/// Two tables, taken straight from the project schema diagram:
-///
-///   quote_requests  -> QUOTE_REQUEST
-///   ai_requests     -> AI_REQUEST   (ai_requests.quote_id is the foreign key)
-///
-/// Only one instance of the database is ever opened. The first call to
-/// [database] creates the file; later calls reuse it.
+
 class DatabaseHelper {
   DatabaseHelper._internal();
 
