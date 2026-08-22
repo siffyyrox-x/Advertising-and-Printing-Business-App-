@@ -20,7 +20,6 @@ migration:
       base_revision: "0000000000000000000000000000000000000000"
 
   # User provided section
-
   # List of Local paths (relative to this file) that should be
   # ignored by the migrate tool.
   unmanaged_files:
