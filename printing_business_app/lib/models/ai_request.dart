@@ -1,19 +1,13 @@
-/// Matches the AI_REQUEST entity from the project schema diagram.
-///
-/// One row is stored for every question the customer asks the Service Helper,
-/// together with the answer that was given and where the answer came from.
+
 class AiRequest {
   final int? aiRequestId;
 
-  /// Optional link to a quote request (FK in the schema diagram).
-  /// Null when the customer was just chatting.
   final int? quoteId;
 
   final String customerPrompt;
   final String aiResponse;
 
-  /// 'online' when the Gemini API answered, 'offline' when the built-in
-  /// rule based bot answered. Useful for demonstrating the fallback.
+
   final String source;
 
   final DateTime createdAt;
