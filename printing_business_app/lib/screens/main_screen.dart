@@ -13,11 +13,7 @@ import 'my_requests_screen.dart';
 import 'quote_screen.dart';
 import 'services_screen.dart';
 
-/// Holds the four main tabs (Home, Services, Gallery, Contact) and the
-/// bottom navigation bar, as drawn in the wireframe.
-///
-/// The Request Quote and Service Helper screens are opened on top of this
-/// screen with Navigator.push, so the user can go back to the tab they were on.
+
 class MainScreen extends StatefulWidget {
   static const String routeName = '/home';
 
