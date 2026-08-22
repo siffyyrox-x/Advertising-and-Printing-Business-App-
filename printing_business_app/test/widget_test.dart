@@ -12,9 +12,7 @@ import 'package:printing_business_app/models/service.dart';
 import 'package:printing_business_app/screens/main_screen.dart';
 import 'package:printing_business_app/utils/ai_service.dart';
 
-/// These tests run without a device, so they only cover pure Dart logic and
-/// widgets. The SQLite database needs a real Android device, so it is not
-/// touched here; the model classes are tested through toMap/fromMap instead.
+
 void main() {
   // ---------------------------------------------------------------- chatbot --
   group('Chatbot rules (offline mode)', () {
